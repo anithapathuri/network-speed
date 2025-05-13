@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Detect Network Speed using JavaScript</title>
+</head>
+<body>
+  <script type="text/javascript">
+    let userImageLink = "https://picsum.photos/2000/1000"; //  image link
+    let time_start, end_time;
+    let downloadSize = 2000000; // Adjust the size according to the new image
+    let downloadImgSrc = new Image();
+
+    downloadImgSrc.onload = function () {
+      end_time = new Date().getTime();
+      displaySpeed();
+    };
+
+    time_start = new Date().getTime();
+    downloadImgSrc.src = userImageLink;
+
+    function displaySpeed() {
+      let timeDuration = (end_time - time_start) / 1000;
+      let loadedBits = downloadSize * 8;
+      let bps = (loadedBits / timeDuration).toFixed(2);
+      let speedInKbps = (bps / 1024).toFixed(2);
+      let speedInMbps = (speedInKbps / 1024).toFixed(2);
+
+      alert("Your internet connection speed is: \n" + 
+            bps + " bps\n" + 
+            speedInKbps + " kbps\n" + 
+            speedInMbps + " Mbps\n");
+    }
+  </script>
+</body>
+</html>
